@@ -84,11 +84,20 @@ async function deleteTask({ id, userId }) {
   return res.affectedRows;
 }
 
+// Delete task by id (admin)
+async function deleteTaskById(id) {
+  const sql = 'DELETE FROM tasks WHERE id = ?';
+  const [res] = await pool.query(sql, [id]);
+  return res.affectedRows;
+}
+
+
 module.exports = {
   createTask,
   getTasksByUser,
   getAllTasks,
   findTaskById,
   updateTask,
-  deleteTask
+  deleteTask,
+  deleteTaskById
 };

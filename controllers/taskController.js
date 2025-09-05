@@ -51,19 +51,17 @@ async function deleteTask(req, res, next) {
   try {
     const id = Number(req.params.id);
     const userId = req.user.id;
+    const userRole = req.user.role;
 
-    // admins may delete any: check role
-    if (req.user.role === 'admin') {
-      // allow deleting regardless of user_id
-      const exist = await taskModel.findTaskById(id);
-      if (!exist) return res.status(404).json({ error: 'Task not found' });
-      const delSql = 'DELETE FROM tasks WHERE id = ?';
-      const db = require('../config/db');
-      await db.query(delSql, [id]);
+    // Admin can delete any task
+    if (userRole === 'admin') {
+      const affected = await taskModel.deleteTaskById(id);
+      if (!affected) return res.status(404).json({ error: 'Task not found' });
       logger.info('Admin deleted task id=%d', id);
       return res.json({ message: 'Task deleted' });
     }
 
+    // Regular user: can delete own task only
     const affected = await taskModel.deleteTask({ id, userId });
     if (!affected) return res.status(403).json({ error: 'Not authorized or task not found' });
 
