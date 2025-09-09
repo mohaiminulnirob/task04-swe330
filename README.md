@@ -25,7 +25,6 @@ Database is MySQL (via XAMPP).
 
 ---
 
-
 ## Installation & Setup
 
 clone this repo
