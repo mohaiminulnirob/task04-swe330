@@ -25,34 +25,6 @@ Database is MySQL (via XAMPP).
 
 ---
 
-## 📂 Project Structure
-
-backend/
-│── config/
-│ └── db.js # MySQL connection pool
-│── controllers/
-│ ├── authController.js
-│ └── taskController.js
-│── middleware/
-│ ├── authMiddleware.js
-│ ├── errorHandler.js
-│ └── roleMiddleware.js
-│── models/
-│ ├── userModel.js
-│ ├── taskModel.js
-│ └── tokenModel.js
-│── routes/
-│ ├── authRoutes.js
-│ └── taskRoutes.js
-│── utils/
-│ ├── logger.js
-│ └── mailer.js
-│── database.sql # Schema for MySQL
-│── server.js # Entry point
-│── package.json
-│── .env
-
----
 
 ## Installation & Setup
 
@@ -86,7 +58,7 @@ node server.js
 
 ## Tasks (Protected)
 
-Requires Authorization: Bearer <token>
+Requires Authorization: Bearer token
 
 | Method | Endpoint         | Description                           |
 | ------ | ---------------- | ------------------------------------- |
